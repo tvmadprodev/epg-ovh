@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <sources>
     <mappings>
-        <channel name="ovh.channels.xml.gz">
-            <url>https://github.com/tvmadprodev/epg-ovh/releases/download/epg-ovh/ovh.channels.xml.gz</url>
+        <channel name="ovh.channels.xml">
+            <url>https://github.com/tvmadprodev/epg-ovh/releases/download/epg-ovh/ovh.channels.xml</url>
         </channel>
     </mappings>
     <sourcecat sourcecatname="EPG OVH - Polska (GitHub)">
-        <source type="gen_xmltv" nocheck="1" channels="ovh.channels.xml.gz">
+        <source type="gen_xmltv" nocheck="1" channels="ovh.channels.xml">
             <description>EPG OVH Polska - Standard (GitHub)</description>
             <url>https://github.com/tvmadprodev/epg-ovh/releases/download/epg-ovh/pl.gz</url>
         </source>
-        <source type="gen_xmltv" nocheck="1" channels="ovh.channels.xml.gz">
+        <source type="gen_xmltv" nocheck="1" channels="ovh.channels.xml">
             <description>EPG OVH Polska - Rozszerzone PLUS (GitHub)</description>
             <url>https://github.com/tvmadprodev/epg-ovh/releases/download/epg-ovh/pltv.gz</url>
         </source>
