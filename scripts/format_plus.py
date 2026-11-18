@@ -65,7 +65,7 @@ def read_header(description):
         match=SE.fullmatch(token)
         if match:
             data['season'],data['episode'],data['total']=match.groups()
-        elif EP.fullmatch(token):
+        elif (match:=EP.fullmatch(token)):
             data['episode'],data['total']=match.groups()
         elif re.fullmatch(r'R\s*:\s*\d{4}',token,re.I):
             data['year']=token.split(':')[1].strip()
