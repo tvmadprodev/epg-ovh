@@ -8,7 +8,7 @@ Po pierwszym udanym przebiegu Actions: https://github.com/tvmadprodev/epg-ovh/re
 
 - `pl.gz`: EPG standard (5 dni)
 - `pltv.gz`: EPG+ (kategorie, rok produkcji itd., o ile dane sa obecne w XMLTV)
-- `ovh.channels.xml.gz`: **stale** mapowanie polskich DVB referencji do rzeczywistych identyfikatorow EPG.OVH
+- `ovh.channels.xml`: **stale** mapowanie polskich DVB referencji do rzeczywistych identyfikatorow EPG.OVH
 - `ovh.sources.xml`: dwa zrodla EPGImport (z mechanizmem `<mappings>` jak Rytec)
 - `install_epg_ovh.sh`: instalator dla odbiornika, przez DreamExplorer lub shell
 - `SHA256SUMS.txt`: sumy kontrolne publikowanych plikow
@@ -46,7 +46,7 @@ Alternatywnie wszystkie pliki mozna wgrywac przez interfejs WWW GitHuba, zachowu
 
 1. Pobierz `install_epg_ovh.sh` i umiesc go w `/tmp/` przez FTP.
 2. W DreamExplorer wybierz plik `.sh` i uzyj opcji wykonania skryptu (nazwa opcji zalezy od wersji DreamExplorer). Jesli przegladarka plikow nie wykonuje skryptow, uzyj SSH: `sh /tmp/install_epg_ovh.sh`.
-3. Skrypt pobierze *aktualne* `ovh.sources.xml` i `ovh.channels.xml.gz` z GitHub Releases, sprawdzi XML i zrobi kopie istniejacych plikow.
+3. Skrypt pobierze *aktualne* `ovh.sources.xml` i `ovh.channels.xml` z GitHub Releases, sprawdzi XML i zrobi kopie istniejacych plikow.
 4. Skrypt **nie restartuje** Enigma2, nie usuwa `epg.dat`, nie zmienia bukietow i nie instaluje dodatkowych wtyczek.
 5. Zrob restart GUI Enigma2 z pilota. Otworz EPGImport -> Zrodla, wybierz jedno z dwoch zrodel, zapisz i uruchom pierwszy reczny import.
 6. W EPGImport wlacz automatyczny import, np. o 07:00 czasu lokalnego.
@@ -74,3 +74,8 @@ Nie zaleca sie codziennej automatycznej przebudowy mapowania wedlug nazw, bo ide
 ## Kwestie techniczne i prawne
 
 Mapowanie obejmuje tylko polskie DVB ref 13E, a nie wszystkie satelity ani wszystkie mozliwe listy. Nie gwarantujemy, ze puste EPG oznacza blad w dekoderze: czasem danego kanalu nie ma w pliku XMLTV. Dane i logotypy EPG.OVH naleza do ich autorow; upewnij sie, ze zasady redystrybucji pozwalaja na publikowanie kopii XMLTV w GitHub Releases. Samo darmowe korzystanie z EPG nie zawsze oznacza licencje na dalsza redystrybucje.
+
+
+## Mapowanie XML (od 1.0-r2)
+
+Nowe zrodla i instalator pobieraja mapowanie `ovh.channels.xml` bez kompresji. `pl.gz` i `pltv.gz` nadal sa kompresowane. W EPGImport zaznacz Standard lub PLUS, zapisz i uruchom import reczny. Gdy import wynosi 0, sprawdz log EPGImport (INFO).
