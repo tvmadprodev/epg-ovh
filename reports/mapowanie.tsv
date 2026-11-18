@@ -82,19 +82,19 @@ HBO HD	1:0:1:290E:1EDC:71:820000:0:0:0:	HBO	xmltv_id_normalized
 HBO2 HD	1:0:1:13F4:5DC:13E:820000:0:0:0:	HBO 2	xmltv_id_normalized
 HBO3 HD	1:0:1:13F9:5DC:13E:820000:0:0:0:	HBO 3	xmltv_id_normalized
 HGTV HD	1:0:19:10EB:3E8:13E:820000:0:0:0:	HGTV	xmltv_id_normalized
-Historia Poland	1:0:16:10DF:3E8:13E:820000:0:0:0:		brak identyfikatora w XMLTV
+Historia Poland	1:0:16:10DF:3E8:13E:820000:0:0:0:	Discovery Historia	manual
 History 2 HD	1:0:1:3E22:2EE0:13E:820000:0:0:0:	History 2	xmltv_id_normalized
 History HD	1:0:1:C2F:1E78:71:820000:0:0:0:	HISTORY	xmltv_id_normalized
 HOME TV	1:0:1:140D:5DC:13E:820000:0:0:0:	HOME TV	xmltv_id_exact
 HOME TV	1:0:1:3D75:2C88:13E:820000:0:0:0:	HOME TV	xmltv_id_exact
-ID Poland HD	1:0:19:3B69:12C:13E:820000:0:0:0:		brak identyfikatora w XMLTV
+ID Poland HD	1:0:19:3B69:12C:13E:820000:0:0:0:	ID	manual
 Insight TV UHD	1:0:11:BEA:20D0:13E:820000:0:0:0:	InUltra	display_exact
 KINO POLSKA HD	1:0:1:3784:44C:13E:820000:0:0:0:	Kino Polska	xmltv_id_normalized
 Kino Polska Muzyka	1:0:1:3785:44C:13E:820000:0:0:0:	Kino Polska Muzyka	xmltv_id_exact
 Love Nature 4K	1:0:20:8B5:1F4:FC:820000:0:0:0:	Love Nature 4K	xmltv_id_exact
 Mango	1:0:1:2914:1EDC:71:820000:0:0:0:		brak identyfikatora w XMLTV
 Metro HD	1:0:1:3DD4:640:13E:820000:0:0:0:	METRO	xmltv_id_normalized
-Mezzo TV	1:0:1:422B:2F44:13E:820000:0:0:0:		brak identyfikatora w XMLTV
+Mezzo TV	1:0:1:422B:2F44:13E:820000:0:0:0:	Mezzo	manual
 MiniMini+ HD	1:0:1:32E0:190:13E:820000:0:0:0:	Minimini+	xmltv_id_normalized
 Motowizja HD	1:0:1:3D56:2C88:13E:820000:0:0:0:	Motowizja	xmltv_id_normalized
 MTV Polska HD	1:0:1:F:1964:13E:820000:0:0:0:	MTV Polska	xmltv_id_normalized
@@ -114,7 +114,7 @@ NUTA GOLD	1:0:1:140E:5DC:13E:820000:0:0:0:	Nuta Gold	xmltv_id_exact
 NUTA GOLD	1:0:1:3D76:2C88:13E:820000:0:0:0:	Nuta Gold	xmltv_id_exact
 NUTA TV	1:0:1:140F:5DC:13E:820000:0:0:0:	Nuta TV	xmltv_id_exact
 NUTA TV	1:0:1:3D77:2C88:13E:820000:0:0:0:	Nuta TV	xmltv_id_exact
-Paramount Network Polska	1:0:1:D:1964:13E:820000:0:0:0:		brak identyfikatora w XMLTV
+Paramount Network Polska	1:0:1:D:1964:13E:820000:0:0:0:	Paramount Channel	manual
 Planete+ HD	1:0:1:3A99:514:13E:820000:0:0:0:	Planete+	xmltv_id_normalized
 Polo TV	1:0:1:429A:2BC0:13E:820000:0:0:0:	Polo TV	xmltv_id_exact
 Polonia 1	1:0:1:423C:3DB8:13E:820000:0:0:0:	Polonia 1	xmltv_id_exact
@@ -169,7 +169,7 @@ TLC HD	1:0:19:10DE:3E8:13E:820000:0:0:0:	TLC	xmltv_id_normalized
 Travel Channel HD	1:0:19:3DD8:640:13E:820000:0:0:0:	Travel Channel	xmltv_id_normalized
 TravelXP 4K	1:0:1F:11FB:2B5C:13E:820000:0:0:0:	Travelxp 4K	xmltv_id_exact
 TTV HD	1:0:1:3DD7:640:13E:820000:0:0:0:	TTV	xmltv_id_normalized
-Turbo Xtra Poland HD	1:0:19:3B6B:12C:13E:820000:0:0:0:		brak identyfikatora w XMLTV
+Turbo Xtra Poland HD	1:0:19:3B6B:12C:13E:820000:0:0:0:	DTX	manual
 TV Okazje	1:0:1:1C8D:1CE8:71:820000:0:0:0:	TV OKAZJE	xmltv_id_exact
 TV Okazje	1:0:1:1C97:1CE8:71:820000:0:0:0:	TV OKAZJE	xmltv_id_exact
 TV PULS HD	1:0:1:13F1:5DC:13E:820000:0:0:0:	TV Puls	xmltv_id_normalized
@@ -211,3 +211,151 @@ Wydarzenia 24	1:0:1:1CBE:1CE8:71:820000:0:0:0:	Wydarzenia 24	xmltv_id_exact
 Wydarzenia 24 HD	1:0:1:290C:1EDC:71:820000:0:0:0:	Wydarzenia 24	xmltv_id_normalized
 Zero	1:0:1:290B:1EDC:71:820000:0:0:0:	Kanal Zero TV	display_exact
 ZOOM	1:0:1:4291:2BC0:13E:820000:0:0:0:	ZOOM TV	display_exact
+13 Ulica HD	1:0:1:3E26:2EE0:71:820000:0:0:0:	13 Ulica	xmltv_id_normalized
+13 Ulica HD	1:0:1:3E44:2EE0:13E:820000:0:0:0:	13 Ulica	xmltv_id_normalized
+13 Ulica HD	1:0:1:3E44:2EE0:71:820000:0:0:0:	13 Ulica	xmltv_id_normalized
+4Fun Dance	1:0:1:428F:2BC0:71:820000:0:0:0:	4FUN DANCE	xmltv_id_exact
+4Fun.TV	1:0:1:428D:2BC0:71:820000:0:0:0:	4FUN TV	xmltv_id_normalized
+Ale Kino+ HD	1:0:1:331B:190:13E:820000:0:0:0:	Ale Kino+	xmltv_id_normalized
+Ale Kino+ HD	1:0:1:32FD:190:13E:820000:0:0:0:	Ale Kino+	xmltv_id_normalized
+AXN HD	1:0:1:C2A:1E78:71:820000:0:0:0:	AXN	xmltv_id_normalized
+BBC Brit	1:0:1:7E0:22C4:13E:820000:0:0:0:	BBC Brit	xmltv_id_exact
+BBC Brit	1:0:1:7E6:22C4:13E:820000:0:0:0:	BBC Brit	xmltv_id_exact
+BBC Brit	1:0:19:7D6:22C4:13E:820000:0:0:0:	BBC Brit	xmltv_id_exact
+BBC Cbeebies	1:0:1:7E3:22C4:13E:820000:0:0:0:	BBC CBeebies	xmltv_id_exact
+BBC Cbeebies	1:0:16:7D9:22C4:13E:820000:0:0:0:	BBC CBeebies	xmltv_id_exact
+BBC Earth HD	1:0:1:1166:2AF8:13E:820000:0:0:0:	BBC Earth	xmltv_id_normalized
+BBC Earth HD	1:0:1:1184:2AF8:13E:820000:0:0:0:	BBC Earth	xmltv_id_normalized
+BBC Lifestyle HD	1:0:1:7E5:22C4:13E:820000:0:0:0:	BBC Lifestyle	xmltv_id_normalized
+BBC Lifestyle HD	1:0:19:7DB:22C4:13E:820000:0:0:0:	BBC Lifestyle	xmltv_id_normalized
+CANAL+ 1 HD	1:0:1:3D55:2C88:13E:820000:0:0:0:	Canal+ 1	xmltv_id_normalized
+CANAL+ 360	1:0:1:1163:2AF8:13E:820000:0:0:0:	Canal+ 360	xmltv_id_exact
+CANAL+ 360	1:0:1:116D:2AF8:13E:820000:0:0:0:	Canal+ 360	xmltv_id_exact
+CANAL+ 360	1:0:1:1177:2AF8:13E:820000:0:0:0:	Canal+ 360	xmltv_id_exact
+CANAL+ 4K ULTRA HD	1:0:1:3310:190:13E:820000:0:0:0:	Canal+ 4K Ultra HD	xmltv_id_exact
+CANAL+ 4K ULTRA HD	1:0:1:3311:190:13E:820000:0:0:0:	Canal+ 4K Ultra HD	xmltv_id_exact
+CANAL+ 4K ULTRA HD	1:0:1F:330D:190:13E:820000:0:0:0:	Canal+ 4K Ultra HD	xmltv_id_exact
+CANAL+ 4K ULTRA HD	1:0:1F:330E:190:13E:820000:0:0:0:	Canal+ 4K Ultra HD	xmltv_id_exact
+CANAL+ DOKUMENT HD	1:0:1:3301:190:13E:820000:0:0:0:	Canal+ Dokument	xmltv_id_normalized
+CANAL+ DOKUMENT HD	1:0:1:377A:44C:13E:820000:0:0:0:	Canal+ Dokument	xmltv_id_normalized
+CANAL+ DOKUMENT HD	1:0:1:3D8A:2C88:13E:820000:0:0:0:	Canal+ Dokument	xmltv_id_normalized
+CANAL+ DOKUMENT HD	1:0:1:37AC:44C:13E:820000:0:0:0:	Canal+ Dokument	xmltv_id_normalized
+CANAL+ DOKUMENT HD	1:0:1:32CF:190:13E:820000:0:0:0:	Canal+ Dokument	xmltv_id_normalized
+CANAL+ DOMO HD	1:0:1:116F:2AF8:13E:820000:0:0:0:	Canal+ Domo	xmltv_id_normalized
+CANAL+ EXTRA 1	1:0:1:1168:2AF8:13E:820000:0:0:0:	Canal+ Extra 1	xmltv_id_exact
+CANAL+ EXTRA 2	1:0:1:1137:2AF8:13E:820000:0:0:0:	Canal+ Extra 2	xmltv_id_exact
+CANAL+ EXTRA 2	1:0:1:1169:2AF8:13E:820000:0:0:0:	Canal+ Extra 2	xmltv_id_exact
+CANAL+ EXTRA 2	1:0:1:3783:44C:13E:820000:0:0:0:	Canal+ Extra 2	xmltv_id_exact
+CANAL+ EXTRA 3	1:0:1:32E3:190:13E:820000:0:0:0:	Canal+ Extra 3	xmltv_id_exact
+CANAL+ EXTRA 4	1:0:1:3316:190:13E:820000:0:0:0:	Canal+ Extra 4	xmltv_id_exact
+CANAL+ FILM HD	1:0:1:3300:190:13E:820000:0:0:0:	Canal+ Film	xmltv_id_normalized
+CANAL+ KUCHNIA	1:0:1:1170:2AF8:13E:820000:0:0:0:	Canal+ Kuchnia	xmltv_id_exact
+CANAL+ PREMIUM HD	1:0:1:3304:190:13E:820000:0:0:0:	Canal+ Premium	xmltv_id_normalized
+CANAL+ PREMIUM HD	1:0:1:3322:190:13E:820000:0:0:0:	Canal+ Premium	xmltv_id_normalized
+CANAL+ PREMIUM HD	1:0:1:32F0:190:13E:820000:0:0:0:	Canal+ Premium	xmltv_id_normalized
+CANAL+ PREMIUM HD	1:0:1:32FA:190:13E:820000:0:0:0:	Canal+ Premium	xmltv_id_normalized
+CANAL+ SERIALE HD	1:0:1:3302:190:13E:820000:0:0:0:	Canal+ Seriale	xmltv_id_normalized
+CANAL+ SERIALE HD	1:0:1:3D89:2C88:13E:820000:0:0:0:	Canal+ Seriale	xmltv_id_normalized
+CANAL+ SPORT 2 HD	1:0:1:3ACE:514:13E:820000:0:0:0:	Canal+ Sport 2	xmltv_id_normalized
+CANAL+ SPORT 2 HD	1:0:1:3AE2:514:13E:820000:0:0:0:	Canal+ Sport 2	xmltv_id_normalized
+CANAL+ SPORT 3 HD	1:0:1:3AD2:514:13E:820000:0:0:0:	Canal+ Sport 3	xmltv_id_normalized
+CANAL+ SPORT 3 HD	1:0:1:3AF0:514:13E:820000:0:0:0:	Canal+ Sport 3	xmltv_id_normalized
+CANAL+ SPORT 4 HD	1:0:1:3AD3:514:13E:820000:0:0:0:	Canal+ Sport 4	xmltv_id_normalized
+CANAL+ SPORT 4 HD	1:0:1:3AF1:514:13E:820000:0:0:0:	Canal+ Sport 4	xmltv_id_normalized
+CANAL+ SPORT 5 HD	1:0:1:3AA5:514:13E:820000:0:0:0:	Canal+ Sport 5	xmltv_id_normalized
+CANAL+ SPORT 5 HD	1:0:1:3AE1:514:13E:820000:0:0:0:	Canal+ Sport 5	xmltv_id_normalized
+CANAL+ SPORT 6	1:0:1:3AD8:514:13E:820000:0:0:0:	Canal+ Sport 6	xmltv_id_exact
+CANAL+ SPORT 6	1:0:1:3AEC:514:13E:820000:0:0:0:	Canal+ Sport 6	xmltv_id_exact
+CANAL+ SPORT HD	1:0:1:3324:190:13E:820000:0:0:0:	Canal+ Sport	xmltv_id_normalized
+CANAL+ SPORT HD	1:0:1:32FC:190:13E:820000:0:0:0:	Canal+ Sport	xmltv_id_normalized
+Cinemax 2 HD	1:0:1:C29:1E78:71:820000:0:0:0:	Cinemax 2	xmltv_id_normalized
+Cinemax HD	1:0:1:3AD1:514:13E:820000:0:0:0:	Cinemax	xmltv_id_normalized
+Comedy Central HD	1:0:1:20:1964:13E:820000:0:0:0:	Comedy Central	xmltv_id_normalized
+Da Vinci	1:0:1:4280:2BC0:71:820000:0:0:0:	Da Vinci Learning	display_exact
+Disney Channel HD	1:0:1:1CC5:1CE8:71:820000:0:0:0:	Disney Channel	xmltv_id_normalized
+E! Entertainment	1:0:1:3E1E:2EE0:71:820000:0:0:0:	E! Entertainment	xmltv_id_exact
+Eleven Sports 1 4K	1:0:1F:70F:32C8:13E:820000:0:0:0:	Eleven Sports 4K	display_exact
+Eleven Sports 1 HD	1:0:1:1425:5DC:13E:820000:0:0:0:	Eleven Sports 1	xmltv_id_normalized
+Eleven Sports 2 HD	1:0:1:13F5:5DC:13E:820000:0:0:0:	Eleven Sports 2	xmltv_id_normalized
+Eleven Sports 3 HD	1:0:1:143E:5DC:13E:820000:0:0:0:	Eleven Sports 3	xmltv_id_normalized
+Eleven Sports 3 HD	1:0:1:13F8:5DC:13E:820000:0:0:0:	Eleven Sports 3	xmltv_id_normalized
+Eska Rock HD	1:0:1:2909:1EDC:71:820000:0:0:0:	Eska Rock TV	display_normalized
+Eurosport 3 HD	1:0:1:3D:1964:13E:820000:0:0:0:	Eurosport 3	xmltv_id_normalized
+Eurosport 4 HD	1:0:1:3E:1964:13E:820000:0:0:0:	Eurosport 4	xmltv_id_normalized
+FILMBOX+ one	1:0:1:378A:44C:13E:820000:0:0:0:	FILMBOX+ One	xmltv_id_exact
+Fx Comedy HD	1:0:1:C2B:1E78:71:820000:0:0:0:	FX Comedy	xmltv_id_normalized
+FX HD	1:0:1:C2D:1E78:71:820000:0:0:0:	FX	xmltv_id_normalized
+HBO2 HD	1:0:1:1426:5DC:13E:820000:0:0:0:	HBO 2	xmltv_id_normalized
+HBO2 HD	1:0:1:1444:5DC:13E:820000:0:0:0:	HBO 2	xmltv_id_normalized
+HBO3 HD	1:0:1:143F:5DC:13E:820000:0:0:0:	HBO 3	xmltv_id_normalized
+HBO3 HD	1:0:1:1449:5DC:13E:820000:0:0:0:	HBO 3	xmltv_id_normalized
+KINO POLSKA HD	1:0:1:37B6:44C:13E:820000:0:0:0:	Kino Polska	xmltv_id_normalized
+MiniMini+ HD	1:0:1:3308:190:13E:820000:0:0:0:	Minimini+	xmltv_id_normalized
+MiniMini+ HD	1:0:1:32FE:190:13E:820000:0:0:0:	Minimini+	xmltv_id_normalized
+Motowizja HD	1:0:1:1402:5DC:13E:820000:0:0:0:	Motowizja	xmltv_id_normalized
+National Geographic Wild HD	1:0:1:1428:5DC:13E:820000:0:0:0:	National Geographic Wild	xmltv_id_normalized
+National Geographic Wild HD	1:0:1:1446:5DC:13E:820000:0:0:0:	National Geographic Wild	xmltv_id_normalized
+Newsmax Polska	1:0:1:1C8A:1CE8:71:820000:0:0:0:	Newsmax Polska	xmltv_id_exact
+Nicktoons HD	1:0:1:45:1964:13E:820000:0:0:0:	Nicktoons	xmltv_id_normalized
+NOVELAS+	1:0:1:3ACC:514:13E:820000:0:0:0:	Novelas+	xmltv_id_exact
+NOVELAS+	1:0:1:3AD6:514:13E:820000:0:0:0:	Novelas+	xmltv_id_exact
+NOVELAS+	1:0:19:3783:44C:13E:820000:0:0:0:	Novelas+	xmltv_id_exact
+Paramount Network Polska	1:0:1:21:1964:13E:820000:0:0:0:	Paramount Channel	manual
+Planete+ HD	1:0:1:3ACB:514:13E:820000:0:0:0:	Planete+	xmltv_id_normalized
+Polo TV	1:0:1:42C2:2BC0:13E:820000:0:0:0:	Polo TV	xmltv_id_exact
+Polsat 2 HD	1:0:1:33AA:3390:71:820000:0:0:0:	Polsat 2	xmltv_id_normalized
+Polsat 2 HD	1:0:1:33BA:3390:71:820000:0:0:0:	Polsat 2	xmltv_id_normalized
+Polsat Cafe HD	1:0:1:33A6:3390:71:820000:0:0:0:	Polsat Café	xmltv_id_normalized
+Polsat Cafe HD	1:0:1:33B6:3390:71:820000:0:0:0:	Polsat Café	xmltv_id_normalized
+Polsat Cafe HD	1:0:1:33C6:3390:71:820000:0:0:0:	Polsat Café	xmltv_id_normalized
+Polsat Cafe HD	1:0:1:33D6:3390:71:820000:0:0:0:	Polsat Café	xmltv_id_normalized
+Polsat Doku HD	1:0:1:C37:1E78:71:820000:0:0:0:	Polsat Doku	xmltv_id_normalized
+Polsat Film HD	1:0:1:33A8:3390:71:820000:0:0:0:	Polsat Film	xmltv_id_normalized
+Polsat Film HD	1:0:1:33B8:3390:71:820000:0:0:0:	Polsat Film	xmltv_id_normalized
+Polsat Film HD	1:0:1:33C8:3390:71:820000:0:0:0:	Polsat Film	xmltv_id_normalized
+Polsat Games HD	1:0:1:4285:2BC0:13E:820000:0:0:0:	Polsat Games	xmltv_id_normalized
+Polsat HD	1:0:1:33A1:3390:71:820000:0:0:0:	Polsat	xmltv_id_normalized
+Polsat HD	1:0:1:33B1:3390:71:820000:0:0:0:	Polsat	xmltv_id_normalized
+Polsat Music HD	1:0:1:4293:2BC0:71:820000:0:0:0:	Polsat Music	xmltv_id_normalized
+Polsat Music HD	1:0:1:4294:2BC0:13E:820000:0:0:0:	Polsat Music	xmltv_id_normalized
+Polsat Music HD	1:0:1:4294:2BC0:71:820000:0:0:0:	Polsat Music	xmltv_id_normalized
+Polsat News 2 HD	1:0:1:3343:3390:71:820000:0:0:0:	POLSAT NEWS 2	xmltv_id_normalized
+Polsat News 2 HD	1:0:1:3353:3390:71:820000:0:0:0:	POLSAT NEWS 2	xmltv_id_normalized
+Polsat News 2 HD	1:0:1:3363:3390:71:820000:0:0:0:	POLSAT NEWS 2	xmltv_id_normalized
+Polsat News HD	1:0:1:33A9:3390:71:820000:0:0:0:	Polsat News	xmltv_id_normalized
+Polsat News HD	1:0:1:33B9:3390:71:820000:0:0:0:	Polsat News	xmltv_id_normalized
+Polsat News HD	1:0:1:33C9:3390:71:820000:0:0:0:	Polsat News	xmltv_id_normalized
+Polsat News HD	1:0:1:33D9:3390:71:820000:0:0:0:	Polsat News	xmltv_id_normalized
+Polsat News HD	1:0:1:33E9:3390:71:820000:0:0:0:	Polsat News	xmltv_id_normalized
+Polsat News HD	1:0:1:33F9:3390:71:820000:0:0:0:	Polsat News	xmltv_id_normalized
+Polsat Play HD	1:0:1:33A2:3390:71:820000:0:0:0:	Polsat Play	xmltv_id_normalized
+Polsat Play HD	1:0:1:33B2:3390:71:820000:0:0:0:	Polsat Play	xmltv_id_normalized
+Polsat Play HD	1:0:1:33C2:3390:71:820000:0:0:0:	Polsat Play	xmltv_id_normalized
+Polsat Play HD	1:0:1:33D2:3390:71:820000:0:0:0:	Polsat Play	xmltv_id_normalized
+Polsat Sport 1	1:0:1:C2E:1E78:71:820000:0:0:0:	Polsat Sport 1	xmltv_id_exact
+Polsat Sport 2	1:0:1:C28:1E78:71:820000:0:0:0:	Polsat Sport 2	xmltv_id_exact
+Puls 2 HD	1:0:1:3D5E:2C88:13E:820000:0:0:0:	Puls 2	xmltv_id_normalized
+SciFi HD	1:0:1:3E20:2EE0:71:820000:0:0:0:	SCI FI	xmltv_id_normalized
+SciFi HD	1:0:1:3E3E:2EE0:13E:820000:0:0:0:	SCI FI	xmltv_id_normalized
+STARS.TV	1:0:1:427F:2BC0:71:820000:0:0:0:	Stars TV	xmltv_id_normalized
+Stopklatka	1:0:1:427C:2BC0:13E:820000:0:0:0:	Stopklatka TV	display_exact
+StudioMed TV	1:0:1:13FB:5DC:13E:820000:0:0:0:	StudioMed TV	xmltv_id_exact
+Sundance HD	1:0:1:3E1D:2EE0:71:820000:0:0:0:	Sundance TV	display_exact
+Super Polsat HD	1:0:1:33AB:3390:71:820000:0:0:0:	Super Polsat	xmltv_id_normalized
+Super Polsat HD	1:0:1:33BB:3390:71:820000:0:0:0:	Super Polsat	xmltv_id_normalized
+teleTOON+ HD	1:0:1:3ACD:514:13E:820000:0:0:0:	Teletoon	xmltv_id_normalized
+teleTOON+ HD	1:0:1:3AD7:514:13E:820000:0:0:0:	Teletoon	xmltv_id_normalized
+TV PULS HD	1:0:1:3D66:2C88:13E:820000:0:0:0:	TV Puls	xmltv_id_normalized
+TV Republika	1:0:1:4289:2BC0:71:820000:0:0:0:	Republika	display_exact
+TV4 HD	1:0:1:33A3:3390:71:820000:0:0:0:	TV 4	xmltv_id_normalized
+TV4 HD	1:0:16:3393:3390:71:820000:0:0:0:	TV 4	xmltv_id_normalized
+TVN Turbo HD	1:0:1:3DD1:640:13E:820000:0:0:0:	TVN Turbo	xmltv_id_normalized
+TVP 1 HD	1:0:1:3ADB:514:13E:820000:0:0:0:	TVP 1	xmltv_id_normalized
+TVP 2 HD	1:0:1:C2C:1E78:71:820000:0:0:0:	TVP 2	xmltv_id_normalized
+TVP ABC	1:0:1:1404:5DC:13E:820000:0:0:0:	TVP ABC	xmltv_id_exact
+TVP Historia	1:0:1:1405:5DC:13E:820000:0:0:0:	TVP Historia	xmltv_id_exact
+TVP Rozrywka	1:0:1:4288:2BC0:71:820000:0:0:0:	TVP Rozrywka	xmltv_id_exact
+TVP Sport HD	1:0:1:3AD0:514:13E:820000:0:0:0:	TVP Sport	xmltv_id_normalized
+TVS	1:0:1:1135:2AF8:13E:820000:0:0:0:	TVS	xmltv_id_exact
+WP	1:0:1:3D5A:2C88:13E:820000:0:0:0:	WP	xmltv_id_exact
+Turbo Xtra Poland HD	1:0:16:3B6B:12C:13E:820000:0:0:0:	DTX	manual
