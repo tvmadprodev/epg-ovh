@@ -84,6 +84,9 @@ jobs:
           gzip -n -9 -c mappings/ovh.channels.xml > ovh.channels.xml.gz
           gzip -t ovh.channels.xml.gz
           test -s ovh.channels.xml
+      - name: Zbuduj instalator IPK r2
+        shell: bash
+        run: sh scripts/package_ipk.sh
       - name: Waliduj konfiguracje EPGImport
         shell: bash
         run: |
@@ -104,13 +107,13 @@ jobs:
           ET.parse('ovh.channels.xml')
           print('Oba EPG, zrodla i mapowanie sa poprawne.')
           PY
-          sha256sum pl.gz pltv.gz ovh.channels.xml ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh > SHA256SUMS.txt
+          sha256sum pl.gz pltv.gz ovh.channels.xml ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh epg-ovh-pl-installer_1.0-r2_all.ipk > SHA256SUMS.txt
       - name: Opublikuj stale adresy plikow w GitHub Releases
         shell: bash
         run: |
           set -euo pipefail
           TAG='epg-ovh'
-          files=(pl.gz pltv.gz ovh.channels.xml ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh SHA256SUMS.txt)
+          files=(pl.gz pltv.gz ovh.channels.xml ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh epg-ovh-pl-installer_1.0-r2_all.ipk SHA256SUMS.txt)
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "${files[@]}" --clobber
           else
