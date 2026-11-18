@@ -128,6 +128,7 @@ def choose(name, ids, display, manual):
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--services', default='data/polish_services.tsv')
+    ap.add_argument('--variants', default='data/verified_variants.tsv')
     ap.add_argument('--pl',default='pl.gz')
     ap.add_argument('--pltv',default='pltv.gz')
     ap.add_argument('--manual',default='data/manual_ids.json')
@@ -136,6 +137,13 @@ def main():
     ap.add_argument('--min',type=int,default=70)
     a=ap.parse_args()
     src=list(csv.DictReader(open(a.services,encoding='utf-8'),delimiter='\t'))
+    if a.variants and Path(a.variants).exists():
+        extra=list(csv.DictReader(open(a.variants,encoding='utf-8'),delimiter='\t'))
+        seen={r['ref'] for r in src}
+        for r in extra:
+            if r['ref'] in seen: continue
+            src.append(r)
+            seen.add(r['ref'])
     if len(src)<120:raise SystemExit('Za malo zweryfikowanych polskich referencji DVB')
     ids,display,all_ids,counts=xmltv_index([a.pl,a.pltv])
     manual=json.load(open(a.manual,encoding='utf-8')) if Path(a.manual).exists() else {}
