@@ -7,3 +7,5 @@ Pelna instrukcja: [README_PL.md](README_PL.md).
 Zrodlo danych: https://epg.ovh/ — warto wesprzec autorow serwisu.
 
 Mapowanie instalowane jest jako `ovh.channels.xml` (nie `.gz`).
+
+Wersja r3: alternatywne zweryfikowane referencje CANAL+ i innych polskich stacji oraz uzupelnione ID OVH. Szczegoly w README_PL.md.
