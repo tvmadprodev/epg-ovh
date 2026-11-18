@@ -96,3 +96,18 @@ Dla Mango brak zweryfikowanego odpowiednika w EPG.OVH. Nie przypisujemy mu obceg
 Uwaga techniczna: jedna z dawnych referencji `Wydarzenia 24` w analizowanym `lamedb5` wystepuje pod nowa nazwa `Polsat News Polityka HD` — nie rozszerzamy jej automatycznie bez oddzielnej weryfikacji.
 
 Codzienna aktualizacja odswieza tylko dane `pl.gz` i `pltv.gz`; mapa jest zachowywana bez automatycznego dopasowywania zagranicznych stacji. Do odbiornikow OpenPLi/OpenATV przeznaczony jest IPK **epg-ovh-pl-installer_1.0-r3_all.ipk**. Po instalacji zrestartuj GUI Enigma2, w EPGImport wybierz jedno zrodlo i wykonaj import reczny.
+
+
+## Czytelne EPG PLUS (18.11.2026)
+
+Od tej aktualizacji tylko `pltv.gz` jest dodatkowo formatowany na GitHub Actions z mysla o Enigma2. Oryginalny `pl.gz` (Standard) i `ovh.channels.xml` (mapowanie) nie sa zmieniane.
+
+- Zamiast `G: komedia. R: 2025. W: 12. O: 6/10` w opisie pojawia sie `Komedia • 2025 • Wiek: od 12 lat • Ocena: 6/10`.
+- Odcinki `E252` i `S1E5/6` sa pokazywane czytelnie jako `Odcinek 252` lub `Sezon 1, odcinek 5/6`.
+- Odpowiednie znane gatunki maja dodatkowo kod DVB (np. `Comedy`, `Documentary`, `News`) rozpoznawany przez EPGImport.
+- Ograniczenia wiekowe z pola `W:` sa dodawane jako prawidlowe `<rating><value>12+</value></rating>`, zeby Enigma2 mogla wyswietlac wiek w osobnym polu.
+- Surowe, niezmienione EPG rozszerzone pozostaje w Releases jako `pltv.source.gz` (kopia do ewentualnego rollbacku).
+
+Przed opublikowaniem formatter jest testowany na aktualnym, kompletnym pliku EPG.OVH; sprawdza takze zgodnosc wszystkich kanalow, tytulow i godzin. Gdy test sie nie powiedzie, workflow nie nadpisuje poprzedniej dobrej kopii EPG.
+
+**Nie jest wymagany nowy IPK**, bo adresy `pl.gz`, `pltv.gz`, `ovh.sources.xml` i `ovh.channels.xml` pozostaja takie same. Na dekoderze wystarczy wybrac tylko PLUS, wyczyscic dotychczasowe dane EPG na czas testu i uruchomic nowy import. Zielony tekst i jego polozenie zalezy od skina i tego, czy odbiornik interpretuje gatunek/oceny DVB.
