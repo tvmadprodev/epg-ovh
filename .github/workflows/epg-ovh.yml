@@ -1,0 +1,55 @@
+name: EPG OVH - codzienny test i publikacja
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *' # 03:17 UTC (04:17 w UK podczas BST)
+
+permissions:
+  contents: write
+
+concurrency:
+  group: epg-ovh-publish
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - name: Pobierz EPG.OVH
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error \
+            --retry 3 --retry-delay 10 \
+            --connect-timeout 20 --max-time 180 \
+            --output pl.gz 'https://epg.ovh/pl.gz'
+          test "$(stat -c%s pl.gz)" -gt 100000
+          gzip -t pl.gz
+          python3 - <<'PY'
+          import gzip
+          import xml.etree.ElementTree as ET
+          with gzip.open('pl.gz', 'rb') as f:
+              _, root = next(ET.iterparse(f, events=('start',)))
+          if root.tag != 'tv':
+              raise SystemExit('To nie jest prawidlowy plik XMLTV.')
+          print('Plik gzip i naglowek XMLTV sa poprawne.')
+          PY
+          ls -lh pl.gz
+
+      - name: Utworz lub zaktualizuj GitHub Release
+        run: |
+          set -euo pipefail
+          TAG='epg-ovh'
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" pl.gz --clobber
+          else
+            gh release create "$TAG" pl.gz \
+              --title 'EPG OVH - aktualna kopia' \
+              --notes 'Automatycznie aktualizowany plik XMLTV pl.gz ze zrodla EPG.OVH.' \
+              --latest
+          fi
+          echo "Adres pliku: https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/pl.gz"
