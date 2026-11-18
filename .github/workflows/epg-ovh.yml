@@ -51,11 +51,24 @@ jobs:
             gzip -t "$2"
             ls -lh "$2"
           done
+      - name: Uporzadkuj PLUS dla Enigma2 (bez zmian Standard i mapowania)
+        shell: bash
+        run: |
+          set -euo pipefail
+          # Keep a pristine source copy, accessible as a separate release asset.
+          cp pltv.gz pltv.source.gz
+          python3 scripts/format_plus.py --input pltv.source.gz --output pltv.prepared.gz --min-events 100000 --min-formatted 20000
+          gzip -t pltv.prepared.gz
+          python3 scripts/verify_plus.py pltv.source.gz pltv.prepared.gz --min-items 100000
+          mv pltv.prepared.gz pltv.gz
+          echo "EPG Standard pl.gz: oryginal bez zmian"
+          echo "EPG PLUS pltv.gz: metadane Enigma2 i czytelny opis"
+
       - name: Przygotuj mapowanie - tylko bootstrap albo reczny rebuild
         shell: bash
         run: |
           set -euo pipefail
-          if [[ ! -s mappings/ovh.channels.xml || "$REBUILD_MAPPING" == 'true' || "$GITHUB_EVENT_NAME" == 'push' ]]; then
+          if [[ ! -s mappings/ovh.channels.xml || "$REBUILD_MAPPING" == 'true'  ]]; then
             echo 'Tworze mapowanie z zatwierdzonej listy polskich referencji.'
             python3 scripts/build_mapping.py --pl pl.gz --pltv pltv.gz \
               --services data/polish_services.tsv \
@@ -95,7 +108,7 @@ jobs:
           python3 - <<'PY'
           import gzip
           import xml.etree.ElementTree as ET
-          for path in ('pl.gz','pltv.gz'):
+          for path in ('pl.gz','pltv.gz','pltv.source.gz'):
               with gzip.open(path,'rb') as f:
                   event,root=next(ET.iterparse(f,events=('start',)))
                   assert root.tag=='tv', f'Not XMLTV: {path}'
@@ -108,13 +121,13 @@ jobs:
           ET.parse('ovh.channels.xml')
           print('Oba EPG, zrodla i mapowanie sa poprawne.')
           PY
-          sha256sum pl.gz pltv.gz ovh.channels.xml ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh epg-ovh-pl-installer_1.0-r3_all.ipk > SHA256SUMS.txt
+          sha256sum pl.gz pltv.gz pltv.source.gz ovh.channels.xml ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh epg-ovh-pl-installer_1.0-r3_all.ipk > SHA256SUMS.txt
       - name: Opublikuj stale adresy plikow w GitHub Releases
         shell: bash
         run: |
           set -euo pipefail
           TAG='epg-ovh'
-          files=(pl.gz pltv.gz ovh.channels.xml ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh epg-ovh-pl-installer_1.0-r3_all.ipk SHA256SUMS.txt)
+          files=(pl.gz pltv.gz pltv.source.gz ovh.channels.xml ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh epg-ovh-pl-installer_1.0-r3_all.ipk SHA256SUMS.txt)
           if gh release view "$TAG" >/dev/null 2>&1; then
             gh release upload "$TAG" "${files[@]}" --clobber
           else
