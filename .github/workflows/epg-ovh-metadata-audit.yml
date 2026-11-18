@@ -63,3 +63,5 @@ jobs:
           print('AUDYT: events',nr,'popular categories',categories.most_common(20))
           print('AUDYT: sample counts',dict(shown))
           PY
+
+# Ponowne uruchomienie audytu po poprawce parsera odcinkow.
