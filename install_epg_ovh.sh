@@ -42,11 +42,16 @@ assert m[0].findtext('url', '').endswith('/ovh.channels.xml'), 'Niepoprawny adre
 root = ET.parse(mapping).getroot()
 assert root.tag == 'channels', 'Niepoprawny kanalowy XML'
 channels = root.findall('channel')
-assert len(channels) >= 150, 'Za malo referencji w mapowaniu'
+assert len(channels) >= 340, 'Za malo referencji w mapowaniu v3'
 for c in channels:
     ref = (c.text or '').strip()
     assert c.get('id') and ref.startswith('1:0:'), 'Niepoprawny wpis w mapowaniu'
     assert ref.split(':')[6].upper() == '820000', 'Obcy satelita w mapowaniu'
+refs={x.text.strip() for x in channels if x.text}
+for required in ('1:0:1:3D55:2C88:13E:820000:0:0:0:',
+                 '1:0:1:3AD2:514:13E:820000:0:0:0:',
+                 '1:0:1:3AD3:514:13E:820000:0:0:0:'):
+    assert required in refs, 'Brak referencji alternatywnej: '+required
 print('OK: 2 zrodla, %d polskich referencji DVB, mapowanie XML.' % len(channels))
 PYVALIDATE
 
