@@ -36,7 +36,7 @@ Alternatywnie wszystkie pliki mozna wgrywac przez interfejs WWW GitHuba, zachowu
 
 1. Wejdz w GitHub > Actions > workflow `EPG OVH Polska - Standard, Plus i mapowanie Enigma2`.
 2. Kliknij **Run workflow**, ustaw `rebuild_mapping=false` (na pierwszy raz nie ma jeszcze mapy i skrypt utworzy ja automatycznie).
-3. Gdy wynik bedzie **zielony**, wejdz w Releases i sprawdz **6 plikow**. W repo powstana `mappings/ovh.channels.xml` i `reports/mapowanie.tsv`.
+3. Gdy wynik bedzie **zielony**, wejdz w Releases i sprawdz opublikowane pliki (w tym EPG, mapowanie i aktualny instalator IPK). W repo powstana `mappings/ovh.channels.xml` i `reports/mapowanie.tsv`.
 4. **Sprawdz raport**, zwlaszcza TVN24, Eleven, Cartoon Network i wiersze `brak` lub `niejednoznaczne`. Nieopublikowane/mapowane automatycznie bez pewnosci pozycje celowo pozostaja bez EPG.
 5. Codzienna aktualizacja `pl.gz` i `pltv.gz` jest zaplanowana na 03:17 UTC. Mapowanie nie jest automatycznie przebudowywane po pierwszym wygenerowaniu.
 
