@@ -1,0 +1,45 @@
+name: EPG OVH - audit metadanych PLUS (bez publikacji)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/epg-ovh-metadata-audit.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Pobierz oryginalne XMLTV+ z OVH
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 --connect-timeout 15 --max-time 240 -o pltv.gz https://epg.ovh/pltv.gz
+          gzip -t pltv.gz
+      - name: Sprawdz format surowych metadanych
+        run: |
+          python3 - <<'PY'
+          import gzip, collections, xml.etree.ElementTree as ET
+          selected={'Canal+ Premium', 'TVP 2', 'Canal+ 4K Ultra HD', 'Canal+ Extra 2'}
+          shown=collections.Counter(); categories=collections.Counter(); nr=0
+          with gzip.open('pltv.gz','rb') as f:
+              for _,e in ET.iterparse(f,events=('end',)):
+                  if e.tag!='programme': continue
+                  nr+=1
+                  c=(e.findtext('category') or '').strip()
+                  if c: categories[c]+=1
+                  cid=e.get('channel','')
+                  if cid in selected and shown[cid]<2:
+                      shown[cid]+=1
+                      print('===',cid,repr(e.findtext('title')),'===')
+                      for tag in ['title','sub-title','desc','category','date','episode-num','rating','star-rating','credits']:
+                          n=e.find(tag)
+                          print(tag,ET.tostring(n,encoding='unicode')[:650] if n is not None else '-')
+                  e.clear()
+          print('AUDYT: events',nr,'popular categories',categories.most_common(20))
+          print('AUDYT: sample counts',dict(shown))
+          PY
