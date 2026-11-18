@@ -51,6 +51,32 @@ jobs:
             gzip -t "$2"
             ls -lh "$2"
           done
+      - name: Jednorazowy audyt brakujacych polskich ID XMLTV
+        run: |
+          python3 - <<'PY'
+          import gzip,re
+          from collections import Counter
+          from xml.etree import ElementTree as ET
+          pat=re.compile(r'(?i)(^id$|investigation|discovery|^dtx$|turbo|histori|mango|paramount|mezz)')
+          for path in ('pl.gz','pltv.gz'):
+              rows={};cnt=Counter();samples={}
+              with gzip.open(path,'rb') as f:
+                  for event,el in ET.iterparse(f,events=('end',)):
+                      if el.tag=='channel':
+                          cid=el.get('id','')
+                          names=[(x.text or '').strip() for x in el.findall('display-name')]
+                          if pat.search(' '.join([cid]+names)):rows[cid]=names
+                          el.clear()
+                      elif el.tag=='programme':
+                          cid=el.get('channel')
+                          if cid in rows:
+                              cnt[cid]+=1
+                              if cid not in samples:samples[cid]=(el.findtext('title') or '')[:80]
+                          el.clear()
+              print('== XMLTV CANDIDATES',path,'==')
+              for cid,names in sorted(rows.items(),key=lambda x:x[0].casefold()):
+                  print('id=',repr(cid),'names=',repr(names[:2]),'events=',cnt[cid],'first=',repr(samples.get(cid,'')))
+          PY
       - name: Przygotuj mapowanie - tylko bootstrap albo reczny rebuild
         shell: bash
         run: |
