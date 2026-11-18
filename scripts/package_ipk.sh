@@ -1,7 +1,7 @@
 #!/bin/sh
 # Builds a portable opkg Debian-ar IPK for the EPG.OVH installer.
 set -eu
-NAME='epg-ovh-pl-installer_1.0-r2_all.ipk'
+NAME='epg-ovh-pl-installer_1.0-r3_all.ipk'
 ROOT=$(pwd)
 WORK=$(mktemp -d)
 trap 'rm -rf "$WORK"' EXIT HUP INT TERM
@@ -10,7 +10,7 @@ cp "$ROOT/install_epg_ovh.sh" "$WORK/data/usr/share/epg-ovh/install_epg_ovh.sh"
 chmod 755 "$WORK/data/usr/share/epg-ovh/install_epg_ovh.sh"
 cat > "$WORK/control/control" <<'CTL'
 Package: epg-ovh-pl-installer
-Version: 1.0-r2
+Version: 1.0-r3
 Architecture: all
 Maintainer: tvmadprodev
 Section: misc
