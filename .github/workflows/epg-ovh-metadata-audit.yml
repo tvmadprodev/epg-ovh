@@ -15,11 +15,31 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
+      - name: Pobierz kod formatera
+        uses: actions/checkout@v4
+      - name: Wykonaj testy jednostkowe formatera
+        run: python3 -m unittest discover -s tests -v
       - name: Pobierz oryginalne XMLTV+ z OVH
         run: |
           set -euo pipefail
           curl -fL --retry 3 --connect-timeout 15 --max-time 240 -o pltv.gz https://epg.ovh/pltv.gz
           gzip -t pltv.gz
+      - name: Test pelnego formatowania na prawdziwym pliku bez publikacji
+        run: |
+          python3 scripts/format_plus.py --input pltv.gz --output pltv.check.gz --min-events 100000 --min-formatted 20000
+          gzip -t pltv.check.gz
+          python3 scripts/verify_plus.py pltv.gz pltv.check.gz --min-items 100000
+          python3 - <<'PY'
+          import gzip,xml.etree.ElementTree as ET
+          with gzip.open('pltv.check.gz','rb') as f:
+              for _,e in ET.iterparse(f,events=('end',)):
+                  if e.tag!='programme':continue
+                  if e.get('channel')=='Canal+ Premium' and 'Wiek:' in (e.findtext('desc') or ''):
+                      print('PROBA PLUS:',e.findtext('title'),repr((e.findtext('desc') or '')[:220]))
+                      print('PROBA DVB:', [c.text for c in e.findall('category')],e.findtext('rating/value'))
+                      break
+                  e.clear()
+          PY
       - name: Sprawdz format surowych metadanych
         run: |
           python3 - <<'PY'
