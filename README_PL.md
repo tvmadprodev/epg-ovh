@@ -79,3 +79,20 @@ Mapowanie obejmuje tylko polskie DVB ref 13E, a nie wszystkie satelity ani wszys
 ## Mapowanie XML (od 1.0-r2)
 
 Nowe zrodla i instalator pobieraja mapowanie `ovh.channels.xml` bez kompresji. `pl.gz` i `pltv.gz` nadal sa kompresowane. W EPGImport zaznacz Standard lub PLUS, zapisz i uruchom import reczny. Gdy import wynosi 0, sprawdz log EPGImport (INFO).
+
+## Aktualizacja mapowania 1.0-r3 (18.11.2026)
+
+Oprocz 212 bazowych referencji polskich stacji z Hot Birda 13E dodano **148 innych, zweryfikowanych referencji DVB** w `data/verified_variants.tsv`. Zostaly sprawdzone na podstawie `lamedb5` z aktualnej listy kanalow: identyczna nazwa i operator, nie na podstawie zgadywania nazwy przez uzytkownika. Dotyczy to m.in. dodatkowych CANAL+ Sport 3/4, Extra 2/3 oraz CANAL+ 1 w roznych bukietach.
+
+Jawnie zatwierdzone ID XMLTV (`data/manual_ids.json`):
+- `Historia Poland` → `Discovery Historia`
+- `ID Poland HD` → `ID`
+- `Turbo Xtra Poland HD / DTX HD` → `DTX`
+- `Mezzo TV` → `Mezzo`
+- `Paramount Network Polska` → `Paramount Channel`
+
+Dla Mango brak zweryfikowanego odpowiednika w EPG.OVH. Nie przypisujemy mu obcego programu.
+
+Uwaga techniczna: jedna z dawnych referencji `Wydarzenia 24` w analizowanym `lamedb5` wystepuje pod nowa nazwa `Polsat News Polityka HD` — nie rozszerzamy jej automatycznie bez oddzielnej weryfikacji.
+
+Codzienna aktualizacja odswieza tylko dane `pl.gz` i `pltv.gz`; mapa jest zachowywana bez automatycznego dopasowywania zagranicznych stacji. Do odbiornikow OpenPLi/OpenATV przeznaczony jest IPK **epg-ovh-pl-installer_1.0-r3_all.ipk**. Po instalacji zrestartuj GUI Enigma2, w EPGImport wybierz jedno zrodlo i wykonaj import reczny.
