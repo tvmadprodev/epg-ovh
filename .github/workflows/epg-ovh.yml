@@ -1,9 +1,19 @@
-name: EPG OVH - codzienny test i publikacja
+name: EPG OVH Polska - Standard, Plus i mapowanie Enigma2
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/epg-ovh.yml'
   workflow_dispatch:
+    inputs:
+      rebuild_mapping:
+        description: 'Odtworz mapowanie ze zweryfikowanych polskich referencji (tylko po recznym zatwierdzeniu)'
+        required: false
+        type: boolean
+        default: false
   schedule:
-    - cron: '17 3 * * *' # 03:17 UTC (04:17 w UK podczas BST)
+    - cron: '17 3 * * *' # 03:17 UTC codziennie
 
 permissions:
   contents: write
@@ -13,43 +23,95 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  update:
+  publish:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 18
     env:
       GH_TOKEN: ${{ github.token }}
       GH_REPO: ${{ github.repository }}
+      REBUILD_MAPPING: ${{ inputs.rebuild_mapping || 'false' }}
     steps:
-      - name: Pobierz EPG.OVH
+      - name: Pobierz repozytorium
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - name: Uruchom testy mapowania
+        run: python3 -m unittest discover -s tests -v
+      - name: Pobierz oba zrodla XMLTV
+        shell: bash
         run: |
           set -euo pipefail
-          curl --fail --location --silent --show-error \
-            --retry 3 --retry-delay 10 \
-            --connect-timeout 20 --max-time 180 \
-            --output pl.gz 'https://epg.ovh/pl.gz'
-          test "$(stat -c%s pl.gz)" -gt 100000
-          gzip -t pl.gz
+          for pair in 'pl.gz pl.gz' 'pltv.gz pltv.gz'; do
+            set -- $pair
+            echo "Pobieram https://epg.ovh/$1"
+            curl --fail --location --silent --show-error \
+              --retry 3 --retry-delay 10 --connect-timeout 20 --max-time 240 \
+              --output "$2" "https://epg.ovh/$1"
+            test "$(stat -c%s "$2")" -gt 100000
+            gzip -t "$2"
+            ls -lh "$2"
+          done
+      - name: Przygotuj mapowanie - tylko bootstrap albo reczny rebuild
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ ! -s mappings/ovh.channels.xml || "$REBUILD_MAPPING" == 'true' ]]; then
+            echo 'Tworze mapowanie z zatwierdzonej listy polskich referencji.'
+            python3 scripts/build_mapping.py --pl pl.gz --pltv pltv.gz \
+              --services data/polish_services.tsv \
+              --manual data/manual_ids.json \
+              --out mappings/ovh.channels.xml --report reports/mapowanie.tsv
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add mappings/ovh.channels.xml reports/mapowanie.tsv
+            if ! git diff --cached --quiet; then
+              git commit -m 'EPG OVH: zatwierdzone referencje polskich kanalow (bootstrap/rebuild)'
+              git push origin HEAD:main
+            fi
+          else
+            echo 'Mapowanie jest ZAMROZONE - nie jest zmieniane przy codziennej aktualizacji EPG.'
+          fi
+          test -s mappings/ovh.channels.xml
+          python3 - <<'PY'
+          import xml.etree.ElementTree as ET
+          root=ET.parse('mappings/ovh.channels.xml').getroot()
+          assert root.tag=='channels'
+          n=len(root.findall('channel'))
+          assert n>=70, f'Too few mapped DVB refs: {n}'
+          print('Zatwierdzone mapowania DVB:',n)
+          PY
+          gzip -n -9 -c mappings/ovh.channels.xml > ovh.channels.xml.gz
+          gzip -t ovh.channels.xml.gz
+      - name: Waliduj konfiguracje EPGImport
+        shell: bash
+        run: |
+          set -euo pipefail
           python3 - <<'PY'
           import gzip
           import xml.etree.ElementTree as ET
-          with gzip.open('pl.gz', 'rb') as f:
-              _, root = next(ET.iterparse(f, events=('start',)))
-          if root.tag != 'tv':
-              raise SystemExit('To nie jest prawidlowy plik XMLTV.')
-          print('Plik gzip i naglowek XMLTV sa poprawne.')
+          for path in ('pl.gz','pltv.gz'):
+              with gzip.open(path,'rb') as f:
+                  event,root=next(ET.iterparse(f,events=('start',)))
+                  assert root.tag=='tv', f'Not XMLTV: {path}'
+          root=ET.parse('ovh.sources.xml').getroot()
+          assert root.tag=='sources'
+          assert len(root.findall('.//source'))==2
+          assert len(root.findall('./mappings/channel'))==1
+          print('Oba EPG, zrodla i mapowanie sa poprawne.')
           PY
-          ls -lh pl.gz
-
-      - name: Utworz lub zaktualizuj GitHub Release
+          sha256sum pl.gz pltv.gz ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh > SHA256SUMS.txt
+      - name: Opublikuj stale adresy plikow w GitHub Releases
+        shell: bash
         run: |
           set -euo pipefail
           TAG='epg-ovh'
+          files=(pl.gz pltv.gz ovh.channels.xml.gz ovh.sources.xml install_epg_ovh.sh SHA256SUMS.txt)
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" pl.gz --clobber
+            gh release upload "$TAG" "${files[@]}" --clobber
           else
-            gh release create "$TAG" pl.gz \
-              --title 'EPG OVH - aktualna kopia' \
-              --notes 'Automatycznie aktualizowany plik XMLTV pl.gz ze zrodla EPG.OVH.' \
+            gh release create "$TAG" "${files[@]}" \
+              --title 'Polskie EPG.OVH dla EPGImport (standard i plus)' \
+              --notes 'EPG OVH standard i rozszerzone oraz zatwierdzona mapa referencji Hot Bird 13E. Dane EPG: epg.ovh (autorzy serwisu). Mapowanie: tvmadprodev.' \
               --latest
           fi
-          echo "Adres pliku: https://github.com/${GITHUB_REPOSITORY}/releases/download/${TAG}/pl.gz"
+          echo "Gotowe: https://github.com/${GITHUB_REPOSITORY}/releases/tag/${TAG}"
